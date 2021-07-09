@@ -1,0 +1,17 @@
+server:
+  port: 8003
+
+spring:
+  application:
+    name: mi-gateway
+  profiles:
+    active: dev
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
