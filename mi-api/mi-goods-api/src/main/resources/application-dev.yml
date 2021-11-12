@@ -1,0 +1,50 @@
+spring:
+  # nacos配置
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.url}:8848
+        namespace: ${nacos.namespace}
+  ## 排除mybatis-plus的自动装载
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+#token认证
+security:
+  oauth2:
+    resource:
+      id: mi-auth-system
+      user-info-uri: ${auth.url}
+#feign 开启hystrix支持
+feign:
+  hystrix:
+    enabled: true
+#hystrix 熔断规则配置
+hystrix:
+  shareSecurityContext: true
+  command:
+    default:
+      execution:
+        tiemout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+      circuitBreaker:
+        #在当20秒的时间内，最近50次调用请求，请求错误率超过60%，则触发熔断10秒，期间快速失败。
+        requestVolumeThreshold: 50
+        errorThresholdPercentage: 60
+        sleepWindowInMilliseconds: 10000
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 20000
+#ribbon 负载均衡 时间配置
+ribbon:
+  ReadTimeout:  600000
+  ConnectTimeout: 6000000
+
+#feign + ribbon 实现负载均衡
+mi-goods:  #提供服务名称
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  #负载均衡策略

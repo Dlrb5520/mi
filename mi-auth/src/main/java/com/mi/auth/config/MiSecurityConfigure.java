@@ -1,6 +1,8 @@
-package com.mi.config;
+package com.mi.auth.config;
 
 
+import com.mi.auth.service.MiUserDetailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +23,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class MiSecurityConfigure extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private MiUserDetailService userDetailService;
+
     /**
      * 密码加密bean  这里使用 security 内部的 BCryptPasswordEncoder
      * 可以自定义需要实现 PasswordEncoder 接口
@@ -31,9 +36,8 @@ public class MiSecurityConfigure extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-
     /**
-     * 登录认证需要用到的
+     * 登录认证需要用到的 身份认证对象
      * @return
      * @throws Exception
      */
@@ -62,6 +66,6 @@ public class MiSecurityConfigure extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
+        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
     }
 }

@@ -20,5 +20,46 @@ spring:
             - name: Hystrix
               args:
                 name: authFallback
-                fallbackUri: forward:/fallback/mi-auth
+                fallbackUri: forward:/fallback/mi-auth/get
+        - id: system
+          uri: lb://mi-system-api
+          predicates:
+            - Path=/system/**
+          filters:
+            - name: Hystrix
+              args:
+                name: systemFallback
+                fallbackUri: forward:/fallback/mi-system-api/get
+        - id: goods
+          uri: lb://mi-goods-api
+          predicates:
+            - Path=/goods/**
+          filters:
+            - name: Hystrix
+              args:
+                name: goodsFallback
+                fallbackUri: forward:/fallback/mi-goods-api/get
+      default-filters:
+        - StripPrefix=1
+  ## 排除mybatis-plus的自动装载
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
+hystrix:
+  command:
+#    默认全局超时时间
+    default:
+      execution:
+        tiemout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+#    单个服务超时时间
+#    systemFallback:
+#      execution:
+#        tiemout:
+#          enabled: true
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 30000

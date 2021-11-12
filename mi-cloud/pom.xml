@@ -15,6 +15,8 @@
         <module>../mi-server</module>
         <module>../mi-api</module>
         <module>../mi-gateway</module>
+        <module>../mi-tx-manager</module>
+        <module>../mi-entity</module>
     </modules>
 
     <properties>
@@ -22,6 +24,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <spring-cloud-alibaba.version>0.9.0.RELEASE</spring-cloud-alibaba.version>
+        <codingapi.txlcn.version>5.0.2.RELEASE</codingapi.txlcn.version>
     </properties>
 
 
@@ -41,6 +44,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
@@ -48,6 +52,26 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- tx-lcn依赖管理 -->
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-tc</artifactId>
+                <version>${codingapi.txlcn.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-tm</artifactId>
+                <version>${codingapi.txlcn.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-txmsg-netty</artifactId>
+                <version>${codingapi.txlcn.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

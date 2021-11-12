@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ServerFallBack {
 
-    @RequestMapping("fallback/{name}")
+    @RequestMapping("fallback/{name}/get")
     public String serverFallback(@PathVariable("name") String name) {
         return "微服务:" + name + "--访问超时,请稍后再试";
     }

@@ -1,0 +1,8 @@
+server:
+  port: 9998
+
+spring:
+  application:
+    name: mi-system
+  profiles:
+    active: dev

@@ -11,10 +11,50 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>mi-server</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>mi-system</module>
+        <module>mi-goods</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yangli</groupId>
+            <artifactId>mi-entity</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- TC依赖 -->
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-tc</artifactId>
+        </dependency>
+        <!-- TC和TM通信依赖于Netty -->
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-txmsg-netty</artifactId>
+        </dependency>
+
+    </dependencies>
 
 </project>

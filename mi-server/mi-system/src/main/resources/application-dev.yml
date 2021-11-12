@@ -1,0 +1,89 @@
+spring:
+  # nacos配置
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.url}:8848
+        namespace: ${nacos.namespace}
+
+  # redis配置
+  redis:
+    # Redis数据库索引（默认为0）
+    database: 3
+    # Redis服务器地址
+    host: 127.0.0.1
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password:
+    # 连接池最大连接数（使用负值表示没有限制）
+    lettuce:
+      pool:
+        max-active: -1
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 10000
+        # 连接池中的最大空闲连接
+        max-idle: 200
+        # 连接池中的最小空闲连接
+        min-idle: 0
+    # 连接超时时间（毫秒）
+    timeout: 10000
+    block-when-exhausted: true
+
+  # 数据源配置
+  datasource:
+    dynamic:
+      hikari:
+        ## 数据库连接超时时间,默认30秒，即30000
+        connection-timeout: 30000
+        ## 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+        max-lifetime: 1800000
+        ## 连接池最大连接数，默认是10
+        max-pool-size: 15
+        ## 最小空闲连接数量
+        min-idle: 5
+        connection-test-query: select 1
+        ## 连接池名称
+        pool-name: MiHikariCP
+        ## 此属性控制从池返回的连接的默认自动提交行为,默认值：true
+        is-auto-commit: true
+      primary: base
+      datasource:
+        base:
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/electronic?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+  zipkin:
+    sender:
+      type: rabbit
+  sleuth:
+    sampler:
+      probability: 1
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+## mybatis-plus 配置
+mybatis-plus:
+  type-aliases-package: com.mi.entity.system
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    jdbc-type-for-null: null
+    #使用Mybatis-plus中的selectMaps方法返回值字段为空不显示的问题
+    call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
+
+security:
+  oauth2:
+    resource:
+      id: mi-system
+      user-info-uri: ${auth.url}
+
+tx-lcn:
+  client:
+    manager-address: ${febs-tx-manager}:9527

@@ -1,4 +1,4 @@
-package com.mi.config;
+package mi.system.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -6,14 +6,14 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
 /**
- * @ClassName MiResourceServerConfigure
+ * @ClassName MiServerSystemResourceServerConfigure
  * @Author yangli
- * @Date 2021/7/13 20:07
- * @Description: 资源服务器 安全配置类
+ * @Date 2021/8/23 18:10
+ * @Description:
  */
 @Configuration
 @EnableResourceServer
-public class MiResourceServerConfigure extends ResourceServerConfigurerAdapter {
+public class MiServerSystemResourceServerConfigure extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -23,4 +23,5 @@ public class MiResourceServerConfigure extends ResourceServerConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/**").authenticated();
     }
+
 }
