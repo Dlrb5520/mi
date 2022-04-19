@@ -1,6 +1,9 @@
 package mi.api.system.controller;
 
+//import com.api.goods.service.IGoodsService;
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import lombok.extern.slf4j.Slf4j;
+import mi.api.system.service.IGoodsService;
 import mi.api.system.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 /**
@@ -24,10 +28,27 @@ public class UserController {
     @Autowired
     private IUserService iUserService;
 
+    @Resource
+    private IGoodsService iGoodsService;
+
     @GetMapping("test")
-    public String test(@RequestParam Map<String,String> params) {
+    @LcnTransaction
+    public void test(@RequestParam Map<String,String> params) {
         log.info("调用！！！！！！！！！！！");
-        return this.iUserService.test(params.get("name"));
+        String resultStr = null;
+        try {
+            resultStr = this.iUserService.test(params.get("name"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            log.info("异常了...................");
+        }
+
+        iGoodsService.test("wowowo");
+        log.info("库存更新完毕----------------");
+
+//        throw new RuntimeException("抛个异常~");
+//        return resultStr;
     }
 
     @GetMapping("test1")

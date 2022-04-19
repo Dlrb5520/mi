@@ -1,9 +1,9 @@
 package mi.goods.service.impl;
 
 import com.codingapi.txlcn.tc.annotation.LcnTransaction;
-import com.mi.entity.Orders;
-import com.mi.service.IOrdersService;
 import lombok.extern.slf4j.Slf4j;
+import mi.goods.entity.Goods;
+import mi.goods.mapper.GoodsMapper;
 import mi.goods.service.ITestService;
 import org.springframework.stereotype.Service;
 
@@ -21,16 +21,14 @@ import java.util.UUID;
 public class TestServiceImpl implements ITestService {
 
     @Resource
-    private IOrdersService iOrdersService;
+    private GoodsMapper goodsMapper;
 
     @Override
     @LcnTransaction
     public void test() {
-        Orders orders = new Orders();
-        orders.setOrderNum(UUID.randomUUID().toString());
-        orders.setGoodsId(1);
-        orders.setGoodsName("iphone13");
-        iOrdersService.save(orders);
-        log.info("生成订单====================");
+        Goods goods = new Goods();
+        goods.setId(1);
+        goodsMapper.updateGoods(goods);
+        log.info("更新库存=================");
     }
 }

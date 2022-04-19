@@ -69,7 +69,7 @@ spring:
 
 ## mybatis-plus 配置
 mybatis-plus:
-  type-aliases-package: com.mi.entity.system
+  type-aliases-package: mi.goods.entity
   mapper-locations: classpath:mapper/*.xml
   configuration:
     jdbc-type-for-null: null

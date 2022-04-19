@@ -38,11 +38,6 @@
             <artifactId>spring-rabbit</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.yangli</groupId>
-            <artifactId>mi-entity</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
 
         <!-- TC依赖 -->
         <dependency>

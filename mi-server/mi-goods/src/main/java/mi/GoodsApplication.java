@@ -20,8 +20,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 // 分布式事物
 @EnableDistributedTransaction
-@ComponentScan("com.mi.service")
-@MapperScan("com.mi.mapper")
+@MapperScan("mi.goods.mapper")
 public class GoodsApplication {
 
     public static void main(String[] args) {

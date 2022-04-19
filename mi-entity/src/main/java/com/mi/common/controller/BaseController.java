@@ -1,4 +1,4 @@
-package com.mi.controller;
+package com.mi.common.controller;
 
 /**
  * @ClassName BaseController

@@ -1,4 +1,4 @@
-package com.mi.entity.goods;
+package mi.system.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

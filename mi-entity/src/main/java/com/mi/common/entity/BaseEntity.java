@@ -1,4 +1,4 @@
-package com.mi.entity;
+package com.mi.common.entity;
 
 /**
  * @ClassName BaseEntity

@@ -1,4 +1,4 @@
-package com.mi.mybatis;
+package com.mi.common.mybatis;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
@@ -6,9 +6,6 @@ import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-
-import java.util.Arrays;
 
 /**
  * @ClassName MysqlGenerator
@@ -25,7 +22,7 @@ public class MysqlGenerator {
 
         // 全局配置
         GlobalConfig globalConfig = new GlobalConfig();
-        globalConfig.setOutputDir("F:\\idea_workspace\\mi-project\\mi-entity\\src\\main\\java");
+        globalConfig.setOutputDir("F:\\idea_workspace\\mi-project\\mi-entity\\src\\main\\java\\com\\mi\\common");
         globalConfig.setAuthor("yangli");
         globalConfig.setFileOverride(true);
         globalConfig.setOpen(false);
@@ -42,7 +39,7 @@ public class MysqlGenerator {
         // 3、包配置
         PackageConfig pc = new PackageConfig();
         //pc.setModuleName("mi_user");
-        pc.setParent("com.mi");
+        pc.setParent("");
         mpg.setPackageInfo(pc);
 
 
@@ -50,7 +47,7 @@ public class MysqlGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-//        strategy.setSuperControllerClass("com.mi.controller.BaseController");
+//        strategy.setSuperControllerClass("com.mi.common.controller.BaseController");
 //        strategy.setSuperEntityClass("com.mi.entity.BaseEntity");
         strategy.setTablePrefix("mi_"); // 表名前缀
         strategy.setEntityLombokModel(true); //使用lombok

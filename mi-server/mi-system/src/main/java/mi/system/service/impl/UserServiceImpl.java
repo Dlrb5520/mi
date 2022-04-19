@@ -1,10 +1,8 @@
 package mi.system.service.impl;
-
-import com.mi.entity.Goods;
-import com.mi.entity.Orders;
-import com.mi.service.IGoodsService;
-import com.mi.service.IOrdersService;
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import lombok.extern.slf4j.Slf4j;
+import mi.system.entity.Order;
+import mi.system.mapper.OrderMapper;
 import mi.system.service.IUserService;
 import org.springframework.stereotype.Service;
 
@@ -22,16 +20,20 @@ import java.util.UUID;
 public class UserServiceImpl  implements IUserService {
 
     @Resource
-    private IGoodsService iGoodsService;
+    private OrderMapper orderMapper;
+
 
     @Override
+    @LcnTransaction
     public String test(String str) {
         log.info("炎龙铠甲！！！！！！！！,{}",str);
-        Goods goods = this.iGoodsService.getById(1);
-        Integer count = (Integer.parseInt(goods.getStock()) - 1);
-        goods.setStock(String.valueOf(count));
-        this.iGoodsService.saveOrUpdate(goods);
-        log.info("更新库存=================");
+
+        Order orders = new Order();
+        orders.setOrderNum(UUID.randomUUID().toString());
+        orders.setGoodsId(1);
+        orders.setGoodsName("iphone13");
+        orderMapper.addOrder(orders);
+        log.info("生成订单====================");
         return str;
     }
 }
